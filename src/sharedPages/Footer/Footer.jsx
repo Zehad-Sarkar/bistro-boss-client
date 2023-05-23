@@ -2,7 +2,7 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer>
+    <footer className="mt-4">
       <div className="p-10 footer bg-neutral text-neutral-content">
         <div>
           <svg
