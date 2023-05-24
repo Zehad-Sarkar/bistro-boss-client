@@ -2,6 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import Main from "../MainLayout/Main";
 import Home from "../pages/Home/Home/Home";
 import Menu from "../sharedPages/Menu/Menu/Menu";
+import Order from "../sharedPages/Order/Order/Order";
+import Login from "../sharedPages/Login/Login";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -14,6 +16,14 @@ export const router = createBrowserRouter([
       {
         path: "/menu",
         element: <Menu></Menu>,
+      },
+      {
+        path: "/order/:category",
+        element: <Order></Order>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
       },
     ],
   },

@@ -22,7 +22,7 @@ const Menu = () => {
         <title>Bristo Boss | Our Menu</title>
       </Helmet>
       {/* main cover */}
-      <Cover img={menuImage} title="Our Menu"></Cover>
+      <Cover img={menuImage} title="our menu"></Cover>
       <SectionTitle
         subHeading="don't Miss"
         heading="Today's Offer"
@@ -32,25 +32,25 @@ const Menu = () => {
       {/* dessert menu items */}
       <MenuCategory
         items={desserts}
-        title={"Dessert"}
+        title={"dessert"}
         img={dessertImage}
       ></MenuCategory>
       {/* Pizza menu items */}
       <MenuCategory
         items={pizza}
-        title={"Pizza"}
+        title={"pizza"}
         img={pizzaImage}
       ></MenuCategory>
       {/* Salad menu items */}
       <MenuCategory
         items={salad}
-        title={"Salad"}
+        title={"salad"}
         img={saladImage}
       ></MenuCategory>
       {/* Soup menu items */}
       <MenuCategory
         items={soup}
-        title={"Soup"}
+        title={"soup"}
         img={soupImage}
       ></MenuCategory>
     </div>

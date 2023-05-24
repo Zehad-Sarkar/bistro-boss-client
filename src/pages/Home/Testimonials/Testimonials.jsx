@@ -6,12 +6,10 @@ import { Navigation } from "swiper";
 import { useEffect, useState } from "react";
 import Rating from "react-rating";
 
-
 const Testimonials = () => {
   const [reviews, setReviews] = useState([]);
-  console.log(reviews);
   useEffect(() => {
-    fetch("reviews.json")
+    fetch("http://localhost:5000/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -24,7 +22,7 @@ const Testimonials = () => {
       <Swiper navigation={true} modules={[Navigation]} className="mySwiper">
         {reviews.map((review) => (
           <SwiperSlide key={review._id}>
-            <div className="m-24 flex flex-col items-center">
+            <div className="flex flex-col items-center m-24">
               <Rating
                 style={{ maxWidth: 180 }}
                 value={review?.rating}
