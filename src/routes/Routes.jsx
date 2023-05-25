@@ -4,6 +4,9 @@ import Home from "../pages/Home/Home/Home";
 import Menu from "../sharedPages/Menu/Menu/Menu";
 import Order from "../sharedPages/Order/Order/Order";
 import Login from "../sharedPages/Login/Login";
+import SignUp from "../sharedPages/SignUp/SignUp";
+import PrivateRoute from "./PrivateRoute";
+import Secret from "../sharedPages/Secret/Secret";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -24,6 +27,18 @@ export const router = createBrowserRouter([
       {
         path: "/login",
         element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <SignUp></SignUp>,
+      },
+      {
+        path: "/secret",
+        element: (
+          <PrivateRoute>
+            <Secret></Secret>
+          </PrivateRoute>
+        ),
       },
     ],
   },
