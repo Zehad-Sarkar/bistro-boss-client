@@ -6,10 +6,12 @@ import {
   FaWallet,
 } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useCart from "../hooks/useCart";
 
 const DashBoard = () => {
+  const [cart] = useCart();
   return (
-    <div className="drawer drawer-mobile ">
+    <div className="drawer drawer-mobile m-4">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="flex flex-col items-center justify-center drawer-content">
         {/* <!-- Page content here --> */}
@@ -41,9 +43,10 @@ const DashBoard = () => {
               <FaWallet></FaWallet>Payment History
             </NavLink>
           </li>
-          <li>
+          <li className="flex">
             <NavLink to="/dashboard/mycart">
               <FaShoppingCart></FaShoppingCart> My Cart
+              <span className="badge w-8 bg-purple-950-600">{cart.length || 0}</span>
             </NavLink>
           </li>
           <div className="divider"></div>

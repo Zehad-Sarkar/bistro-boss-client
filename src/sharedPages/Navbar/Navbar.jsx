@@ -53,7 +53,7 @@ const Navbar = () => {
         <Link>Contact us</Link>
       </li>
       <li>
-        <Link>DashBoard</Link>
+        <Link to='/dashboard'>DashBoard</Link>
       </li>
     </>
   );

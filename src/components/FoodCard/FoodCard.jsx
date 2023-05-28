@@ -28,9 +28,8 @@ const FoodCard = ({ item }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.insertedId) {
-            refetch();//refetch for update the cart
+            refetch(); //refetch for update the cart
             Swal.fire({
               position: "top-end",
               icon: "success",
