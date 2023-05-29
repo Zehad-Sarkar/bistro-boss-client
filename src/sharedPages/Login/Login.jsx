@@ -1,4 +1,4 @@
-import { useContext, useEffect,  useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import {
   loadCaptchaEnginge,
@@ -9,6 +9,7 @@ import {
 import { AuthContext } from "../../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../SocialLogin/SocialLogin";
 
 const Login = () => {
   const [disabled, setdisabled] = useState(true);
@@ -125,6 +126,7 @@ const Login = () => {
             <p className="mb-8 text-center ">
               New Here ? <Link to="/register">Create An Account</Link>{" "}
             </p>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
