@@ -1,12 +1,18 @@
-import React from "react";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   const navOptions = (
     <>
       <li>
-        <a>Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
+        <Link to="/">Menu</Link>
+      </li>
+      <li>
+        <Link to="/">Dashboard</Link>
+      </li>
+      {/* <li>
         <a>Parent</a>
         <ul className="p-2">
           <li>
@@ -16,14 +22,14 @@ const NavBar = () => {
             <a>Submenu 2</a>
           </li>
         </ul>
-      </li>
+      </li> */}
       <li>
-        <a>About</a>
+        <Link to="/">About</Link>
       </li>
     </>
   );
   return (
-    <div className="navbar bg-base-100">
+    <div className="fixed z-10 max-w-6xl font-medium text-white bg-black bg-opacity-40 navbar">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -44,18 +50,20 @@ const NavBar = () => {
           </label>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 "
           >
             {navOptions}
           </ul>
         </div>
-        <a className="text-xl normal-case btn btn-ghost">daisyUI</a>
+        <a className="text-xl normal-case btn btn-ghost">Bistro Boss</a>
       </div>
       <div className="hidden navbar-center lg:flex">
         <ul className="px-1 menu menu-horizontal">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Button</a>
+        <Link className="px-3">
+          <img src="" alt="Profile" className="w-12 h-12 rounded-full" />
+        </Link>
       </div>
     </div>
   );
