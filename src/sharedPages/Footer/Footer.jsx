@@ -62,7 +62,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="p-4 footer-center bg-base-300 text-base-content">
-        <p>Copyright ©{year}- All right reserved by ACME Industries Ltd</p>
+        <p>Copyright ©{year}- All right reserved by Bistro Restaurent Ltd</p>
       </div>
     </footer>
   );
