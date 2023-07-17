@@ -1,31 +1,35 @@
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const user = false;
   const navOptions = (
     <>
       <li>
         <Link to="/">Home</Link>
       </li>
       <li>
-        <Link to="/">Menu</Link>
+        <Link to="/menu">Menu</Link>
       </li>
-      <li>
-        <Link to="/">Dashboard</Link>
-      </li>
-      {/* <li>
-        <a>Parent</a>
-        <ul className="p-2">
-          <li>
-            <a>Submenu 1</a>
-          </li>
-          <li>
-            <a>Submenu 2</a>
-          </li>
-        </ul>
-      </li> */}
       <li>
         <Link to="/">About</Link>
       </li>
+      {/* user route validation */}
+      {user && user ? (
+        <>
+          <li>
+            <Link to="/">Dashboard</Link>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <Link to="/">Login</Link>
+          </li>
+          <li>
+            <Link to="/">Sign Up</Link>
+          </li>
+        </>
+      )}
     </>
   );
   return (
