@@ -1,9 +1,8 @@
 const Item = ({ item }) => {
-  // console.log("item", item);
   const { name, price, image, recipe } = item;
 
   return (
-    <div className="flex gap-3">
+    <div className="flex gap-4">
       <img
         src={image}
         alt="food"

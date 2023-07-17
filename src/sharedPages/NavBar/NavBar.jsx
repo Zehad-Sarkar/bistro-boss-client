@@ -11,7 +11,7 @@ const NavBar = () => {
         <Link to="/menu">Menu</Link>
       </li>
       <li>
-        <Link to="/">About</Link>
+        <Link to="/orderFood/salad">Order Food</Link>
       </li>
       {/* user route validation */}
       {user && user ? (
