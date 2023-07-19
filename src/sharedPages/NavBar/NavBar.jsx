@@ -23,10 +23,10 @@ const NavBar = () => {
       ) : (
         <>
           <li>
-            <Link to="/">Login</Link>
+            <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/">Sign Up</Link>
+            <Link to="/signUp">Sign Up</Link>
           </li>
         </>
       )}
