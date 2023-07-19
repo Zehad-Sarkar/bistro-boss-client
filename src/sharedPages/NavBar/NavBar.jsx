@@ -32,6 +32,9 @@ const NavBar = () => {
       <li>
         <Link to="/orderFood/salad">Order Food</Link>
       </li>
+      <li>
+        <Link to="/secret">Secret page </Link>
+      </li>
       {/* user route validation */}
       {user && user ? (
         <>
@@ -89,9 +92,11 @@ const NavBar = () => {
         <ul className="px-1 menu menu-horizontal">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        <Link className="px-3">
-          <img src="" alt="Profile" className="w-12 h-12 rounded-full" />
-        </Link>
+        <img
+          src={user ? user?.photoURL : "no photo"}
+          className="w-12 h-12 rounded-full"
+          title={user ? user?.displayName : "name"}
+        />
       </div>
     </div>
   );

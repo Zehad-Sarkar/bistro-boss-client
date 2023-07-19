@@ -1,11 +1,13 @@
 import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProviders";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -14,11 +16,21 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
-
     createUser(data.email, data.password)
       .then((result) => {
         const loggedUser = result.user;
+        updateUserProfile(data.name, data.photoURL)
+          .then(() => {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "User update successful and login",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+            navigate("/");
+          })
+          .catch((err) => console.log(err.message));
       })
       .catch((err) => {
         console.log(err.message);
@@ -67,6 +79,20 @@ const SignUp = () => {
                 />
                 {errors.email && (
                   <span className="text-red-500">Email is required.</span>
+                )}
+              </div>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo Url</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="photo url"
+                  className="input input-bordered"
+                  {...register("photoURL", { required: true })}
+                />
+                {errors.photoURL && (
+                  <span className="text-red-500">photo url is required.</span>
                 )}
               </div>
               <div className="form-control">
@@ -122,9 +148,17 @@ const SignUp = () => {
           <p>
             <small>
               Allready have an acount ?
-              <Link to="/login" className="ml-2 text-blue-400">
+              <Link to="/login" className="ml-2 mr-2 text-blue-400">
                 go to login
               </Link>
+            </small>
+            or
+            <small>
+              <span>
+                <Link to="/" className="ml-2 text-blue-400">
+                  go to home
+                </Link>
+              </span>
             </small>
           </p>
         </div>

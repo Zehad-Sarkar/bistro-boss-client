@@ -8,14 +8,16 @@ import {
   validateCaptcha,
 } from "react-simple-captcha";
 import { AuthContext } from "../../providers/AuthProviders";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const formRef = useRef(null);
-  const captchaRef = useRef(null);
   const [disable, setDisable] = useState(true);
   const { signInUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
   useEffect(() => {
     loadCaptchaEnginge(6);
   }, []);
@@ -31,6 +33,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err.message);
@@ -41,7 +44,6 @@ const Login = () => {
 
   // captcha validate event handler
   const handleValidateCaptcha = (e) => {
-    // const userCaptcha = captchaRef.current.value;
     const userCaptcha = e.target.value;
     if (validateCaptcha(userCaptcha)) {
       setDisable(false);
@@ -99,18 +101,11 @@ const Login = () => {
                 <input
                   type="text"
                   onBlur={handleValidateCaptcha}
-                  // ref={captchaRef}
                   name="captcha"
                   placeholder="type the captcha"
                   className="input input-bordered"
                 />
                 <LoadCanvasTemplate />
-                {/* <button
-                  onBlur={handleValidateCaptcha}
-                  className="btn btn-outline btn-xs btn-primary"
-                >
-                  Validate
-                </button> */}
               </div>
               <div className="mt-6 form-control">
                 <input
@@ -125,9 +120,17 @@ const Login = () => {
           <p>
             <small>
               Don't have an acount ?
-              <Link to="/signUp" className="ml-2 text-blue-400">
+              <Link to="/signUp" className="ml-2 mr-2 text-blue-400">
                 go to sign up
               </Link>
+            </small>
+            or
+            <small>
+              <span>
+                <Link to="/" className="ml-2 text-blue-400">
+                  go to home
+                </Link>
+              </span>
             </small>
           </p>
         </div>
