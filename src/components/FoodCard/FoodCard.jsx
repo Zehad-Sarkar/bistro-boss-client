@@ -1,5 +1,62 @@
+import { useContext } from "react";
+import { AuthContext } from "../../providers/AuthProviders";
+import Swal from "sweetalert2";
+import { useLocation, useNavigate } from "react-router-dom";
+
 const FoodCard = ({ item }) => {
   const { name, price, image, recipe } = item;
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  //add to cart event handler
+  const handleAddToCart = (cartItem) => {
+    const { name, price, image, _id } = cartItem;
+
+    if (user && user.email) {
+      const orderItem = {
+        email: user.email,
+        menuItemID: _id,
+        name,
+        price,
+        image,
+      };
+      fetch("http://localhost:5000/carts", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(orderItem),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          if (data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Your work has been saved",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          }
+        });
+    } else {
+      Swal.fire({
+        title: "login now",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "login now",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/login", { state: { from: location } });
+        }
+      });
+    }
+  };
+
   return (
     <div className="w-full shadow-xl card bg-base-100">
       <figure>
@@ -11,8 +68,13 @@ const FoodCard = ({ item }) => {
       <div className="card-body">
         <h2 className="card-title">{name}</h2>
         <p>{recipe}</p>
-        <div className="justify-end card-actions">
-          <button className="btn btn-primary">Buy Now</button>
+        <div className="justify-center card-actions">
+          <button
+            onClick={() => handleAddToCart(item)}
+            className="btn btn-primary"
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </div>

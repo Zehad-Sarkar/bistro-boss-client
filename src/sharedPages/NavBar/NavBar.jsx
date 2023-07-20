@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
@@ -33,6 +34,12 @@ const NavBar = () => {
         <Link to="/orderFood/salad">Order Food</Link>
       </li>
       <li>
+        <Link to='/' className="btn">
+          <FaShoppingCart />
+          <div className="badge badge-secondary">+0</div>
+        </Link>
+      </li>
+      <li>
         <Link to="/secret">Secret page </Link>
       </li>
       {/* user route validation */}
@@ -41,6 +48,7 @@ const NavBar = () => {
           <li>
             <Link to="/">Dashboard</Link>
           </li>
+
           <li>
             <Link to="/login" onClick={handleLogOut}>
               Logout
