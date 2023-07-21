@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
 import Secret from "../sharedPages/Secret/Secret";
 import ProtectedRoute from "./Privateroute/ProtectedRoute";
+import DashBoard from "../Layout/DashBoard/DashBoard";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -42,5 +43,9 @@ export const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "dashboard",
+    element: <DashBoard />,
   },
 ]);
