@@ -49,7 +49,7 @@ const NavBar = () => {
       {user && user ? (
         <>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link to="/dashboard/myCart">Dashboard</Link>
           </li>
 
           <li>
