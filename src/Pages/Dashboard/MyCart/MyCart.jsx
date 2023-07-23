@@ -1,20 +1,46 @@
 import { FaTrash } from "react-icons/fa";
 import useCart from "../../../hooks/useCart/useCart";
+import Swal from "sweetalert2";
 
 const MyCart = () => {
-  const [cart] = useCart();
+  const [cart, refetch] = useCart();
   const total = cart.reduce((sum, item) => sum + item.price, 0);
+  //delete item event handler added
+  const handleDelete = (item) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/deleteCart/${item._id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            }
+          });
+      }
+    });
+  };
 
   return (
-    <div>
+    <div className="w-full">
       <div className="flex items-center mb-4 justify-evenly">
         <p>Total Item: {cart?.length}</p>
         <p>Total Price: {total}</p>
         <button className="w-32 btn btn-outline btn-primary">Pay</button>
       </div>
       {/* table */}
-      <div className="overflow-x-auto">
-        <table className="table">
+      <div className="w-full overflow-x-auto">
+        <table className="table w-full">
           {/* head */}
           <thead>
             <tr>
@@ -26,7 +52,7 @@ const MyCart = () => {
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="w-full">
             {cart.map((item, i) => (
               <tr key={i}>
                 <th>
@@ -44,7 +70,10 @@ const MyCart = () => {
                 <td>{item?.name}</td>
                 <td>$ {item?.price}</td>
                 <th>
-                  <button className="btn btn-outline btn-primary">
+                  <button
+                    onClick={() => handleDelete(item)}
+                    className="btn btn-outline btn-primary"
+                  >
                     <FaTrash />
                   </button>
                 </th>
