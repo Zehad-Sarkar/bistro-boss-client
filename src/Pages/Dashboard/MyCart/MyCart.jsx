@@ -49,7 +49,6 @@ const MyCart = () => {
               <th>Name</th>
               <th>price</th>
               <th>Action</th>
-              <th></th>
             </tr>
           </thead>
           <tbody className="w-full">
@@ -69,14 +68,14 @@ const MyCart = () => {
                 </td>
                 <td>{item?.name}</td>
                 <td>$ {item?.price}</td>
-                <th>
+                <td>
                   <button
                     onClick={() => handleDelete(item)}
                     className="btn btn-outline btn-primary"
                   >
                     <FaTrash />
                   </button>
-                </th>
+                </td>
               </tr>
             ))}
           </tbody>
