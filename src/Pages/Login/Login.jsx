@@ -10,6 +10,7 @@ import {
 import { AuthContext } from "../../providers/AuthProviders";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import SocialLogin from "../../components/socialLogin/socialLogin";
 
 const Login = () => {
   const formRef = useRef(null);
@@ -28,11 +29,10 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    // console.log(email, password);
+
     signInUser(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
         navigate(from, { replace: true });
       })
       .catch((err) => {
@@ -116,6 +116,8 @@ const Login = () => {
                 />
               </div>
             </div>
+            {/* social login */}
+            <SocialLogin />
           </form>
           <p>
             <small>

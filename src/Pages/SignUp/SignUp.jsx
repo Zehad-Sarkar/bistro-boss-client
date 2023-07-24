@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/socialLogin/socialLogin";
 
 const SignUp = () => {
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -48,7 +49,7 @@ const SignUp = () => {
                 }
               });
           })
-          .catch((err) => console.log(err.message));
+          .catch((err) => console.error(err.message));
       })
       .catch((err) => {
         console.log(err.message);
@@ -162,6 +163,8 @@ const SignUp = () => {
                 />
               </div>
             </div>
+            {/* social login */}
+            <SocialLogin />
           </form>
           <p>
             <small>
