@@ -4,7 +4,7 @@ import useCart from "../../hooks/useCart/useCart";
 
 const DashBoard = () => {
   const [cart] = useCart();
-  const isAdmin = true;
+  const isAdmin = false;
   return (
     <div className=" drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
