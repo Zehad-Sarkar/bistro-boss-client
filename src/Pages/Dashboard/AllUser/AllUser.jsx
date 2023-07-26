@@ -32,7 +32,7 @@ const AllUser = () => {
 
   //user delete event handler
   const handleDelete = (user) => {
-    console.log(user);
+    // console.log(user);
   };
   return (
     <div>

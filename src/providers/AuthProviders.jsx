@@ -12,6 +12,7 @@ import {
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 import { useEffect } from "react";
+import axios from "axios";
 
 const auth = getAuth(app);
 export const AuthContext = createContext();
@@ -27,11 +28,13 @@ const AuthProviders = ({ children }) => {
   };
   // create user
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   // user sign in
   const signInUser = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -51,6 +54,16 @@ const AuthProviders = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      if (currentUser) {
+        axios
+          .post("http://localhost:5000/jwt", { email: currentUser?.email })
+          .then((data) => {
+            console.log("token", data.data.token);
+            localStorage.setItem("token", data.data.token);
+          });
+      } else {
+        localStorage.removeItem("token");
+      }
       setLoading(false);
     });
     return () => {
