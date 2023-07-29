@@ -1,13 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
-import { FaTrash, FaUser, FaUserShield } from "react-icons/fa";
+import { FaTrash, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosInterceptor/useAxiosSecure";
 
 const AllUser = () => {
+  const axiosSecure = useAxiosSecure();
   //user load from database
   const { data: users = [], refetch } = useQuery(["users"], async () => {
-    const res = await fetch("http://localhost:5000/users");
-    return res.json();
+    const res = await axiosSecure.get("/users");
+    return res.data;
   });
 
   //user role make admin event handler
@@ -22,7 +23,7 @@ const AllUser = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: `now ,${user.name} is an admin`,
+            title: `now ,${user?.name} is an admin`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -55,8 +56,8 @@ const AllUser = () => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>
-                  {user.role === "Admin" ? (
-                    "Admin"
+                  {user.role === "admin" ? (
+                    "admin"
                   ) : (
                     <button
                       onClick={() => handleMakeAdmin(user)}

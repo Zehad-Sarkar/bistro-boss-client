@@ -1,10 +1,13 @@
 import { NavLink, Outlet } from "react-router-dom";
 import { FaHome, FaShoppingCart, FaUtensilSpoon } from "react-icons/fa";
 import useCart from "../../hooks/useCart/useCart";
+import useAdmin from "../../hooks/useAdmin/useAdmin";
 
 const DashBoard = () => {
   const [cart] = useCart();
-  const isAdmin = false;
+  // const isAdmin = true;
+  const [isAdmin] = useAdmin();
+  console.log("isAdmin", isAdmin);
   return (
     <div className=" drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -33,7 +36,7 @@ const DashBoard = () => {
                 </span>
               </li>
               <li>
-                <NavLink to="/dashboard/add">
+                <NavLink to="/dashboard/addItem">
                   <FaUtensilSpoon /> Add Item
                 </NavLink>
               </li>
@@ -56,7 +59,7 @@ const DashBoard = () => {
               <hr className="my-2 text-red-500 border-2" />
               {/* user dashboard */}
               <li>
-                <NavLink to="/dashboard/home">
+                <NavLink to="/dashboard">
                   <FaHome />
                   User Home
                 </NavLink>
