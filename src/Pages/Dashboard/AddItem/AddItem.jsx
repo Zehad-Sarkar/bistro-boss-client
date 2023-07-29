@@ -40,7 +40,6 @@ const AddItem = () => {
               });
             }
           });
-          // console.log(newItem);
         }
       });
   };
