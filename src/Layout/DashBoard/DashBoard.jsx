@@ -7,7 +7,7 @@ const DashBoard = () => {
   const [cart] = useCart();
   // const isAdmin = true;
   const [isAdmin] = useAdmin();
-  console.log("isAdmin", isAdmin);
+
   return (
     <div className=" drawer drawer-mobile">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -41,7 +41,7 @@ const DashBoard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink>Manage Items</NavLink>
+                <NavLink to="/dashboard/manageItems">Manage Items</NavLink>
               </li>
               <li>
                 <NavLink>Manage Bookings</NavLink>

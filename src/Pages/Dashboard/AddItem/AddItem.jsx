@@ -20,9 +20,9 @@ const AddItem = () => {
       .then((imageResponse) => {
         if (imageResponse.success) {
           const imgURL = imageResponse.data.display_url;
-          const { recipeName, category, price, details } = data;
+          const { recipeName: name, category, price, details } = data;
           const newItem = {
-            recipeName,
+            name,
             category,
             price: parseFloat(price),
             image: imgURL,

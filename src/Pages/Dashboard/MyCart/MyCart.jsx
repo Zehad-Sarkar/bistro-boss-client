@@ -1,6 +1,7 @@
 import { FaTrash } from "react-icons/fa";
 import useCart from "../../../hooks/useCart/useCart";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const MyCart = () => {
   const [cart, refetch] = useCart();
@@ -36,7 +37,9 @@ const MyCart = () => {
       <div className="flex items-center mb-4 justify-evenly">
         <p>Total Item: {cart?.length}</p>
         <p>Total Price: {total}</p>
-        <button className="w-32 btn btn-outline btn-primary">Pay</button>
+        <Link to="/dashboard/payment">
+          <button className="w-32 btn btn-outline btn-primary">Pay</button>
+        </Link>
       </div>
       {/* table */}
       <div className="w-full overflow-x-auto">
